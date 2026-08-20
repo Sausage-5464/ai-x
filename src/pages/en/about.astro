@@ -5,10 +5,7 @@ import Container from "@/components/container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 import { useTranslations, type Lang } from "@/i18n/utils";
 
-export interface Props {
-  lang?: Lang;
-}
-const { lang = "zh" } = Astro.props as { lang?: Lang };
+const lang: Lang = "en";
 const t = useTranslations(lang);
 
 const organizers = (await getCollection("organizers", ({ data }) => !data.draft))
@@ -43,7 +40,6 @@ function initials(name: string, nameEn?: string) {
       <Fragment slot="desc">{t("about.desc")}</Fragment>
     </Sectionhead>
 
-    {/* 简介 */}
     <div class="flex flex-col gap-3 mx-auto max-w-3xl mt-16">
       <h2 class="font-serif font-bold text-2xl text-[var(--color-ink)] leading-snug">
         {t("about.intro.h")}
@@ -53,7 +49,6 @@ function initials(name: string, nameEn?: string) {
       </p>
     </div>
 
-    {/* 基础信息 */}
     <div class="mx-auto max-w-3xl mt-16">
       <h3 class="text-xl font-serif font-semibold text-[var(--color-ink)]">
         {t("about.logistics.title")}
@@ -72,7 +67,6 @@ function initials(name: string, nameEn?: string) {
       </dl>
     </div>
 
-    {/* 组织者 */}
     <div class="mx-auto max-w-5xl mt-20">
       <h3 class="text-xl font-serif font-semibold text-[var(--color-ink)] text-center">
         {t("about.organizers.title")}
@@ -84,12 +78,8 @@ function initials(name: string, nameEn?: string) {
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-8 mt-12">
         {
           organizers.map((entry) => {
-            const displayName = lang === "en" && entry.data.nameEn
-              ? entry.data.nameEn
-              : entry.data.name;
-            const displayAff = lang === "en" && entry.data.affiliationEn
-              ? entry.data.affiliationEn
-              : entry.data.affiliation;
+            const displayName = entry.data.nameEn ?? entry.data.name;
+            const displayAff = entry.data.affiliationEn ?? entry.data.affiliation;
             return (
               <div class="flex flex-col items-center text-center">
                 <div class="size-20 rounded-full bg-[var(--color-paper)] border-2 border-[var(--color-rule)] flex items-center justify-center text-xl font-semibold text-[var(--color-slate)]">

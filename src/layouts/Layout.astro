@@ -5,63 +5,58 @@ import Navbar from "@/components/navbar/navbar.astro";
 import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/bricolage-grotesque";
 import "../styles/global.css";
+import { useTranslations, type Lang } from "@/i18n/utils";
 
 export interface Props {
-  title: string;
+  title?: string;
+  lang?: Lang;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const { title, lang = "zh" } = Astro.props;
+const t = useTranslations(lang);
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 const resolvedImageWithDomain = new URL(
   "/opengraph.jpg",
   Astro.site
 ).toString();
 
-const { title } = Astro.props;
-
-const makeTitle = title
-  ? title + " | " + "Astroship"
-  : "Astroship - Starter Template for Astro with Tailwind CSS";
+const siteName = t("site.name");
+const makeTitle = title ? `${title} | ${siteName}` : `${siteName} — ${t("site.tagline")}`;
+const description = t("site.description");
+const htmlLang = lang === "en" ? "en" : "zh-CN";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Astroship is a starter website template for Astro built with TailwindCSS."
+      description={description}
       canonical={canonicalURL}
-      twitter={{
-        creator: "@surjithctly",
-        site: "@web3templates",
-        card: "summary_large_image",
-      }}
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Astroship - Starter Template for Astro`,
+          title: makeTitle,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Astroship Homepage Screenshot",
+          alt: siteName,
         },
       }}
     />
   </head>
   <body>
-    <Navbar />
+    <Navbar lang={lang} />
     <slot />
-    <Footer />
+    <Footer lang={lang} />
     <style is:global>
-      /* Improve Page speed */
-      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
       img {
         content-visibility: auto;
       }

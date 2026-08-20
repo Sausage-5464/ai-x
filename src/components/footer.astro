@@ -1,19 +1,59 @@
-<footer class="my-20">
-  <p class="text-center text-sm text-slate-500">
-    Copyright © {new Date().getFullYear()} Astroship. All rights reserved.
-  </p>
-  <!--
-    Can we ask you a favor 🙏
-    Please keep this backlink on your website if possible.
-    or Purchase a commercial license from https://web3templates.com
-  -->
-  <p class="text-center text-xs text-slate-500 mt-1">
-    Made by <a
-      href="https://web3templates.com"
-      target="_blank"
-      rel="noopener"
-      class="hover:underline">
-      Web3Templates
-    </a>
-  </p>
+---
+import Container from "@/components/container.astro";
+import { useTranslations, type Lang } from "@/i18n/utils";
+
+const { lang = "zh" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-rule)] py-12 mt-8">
+  <Container>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+      <!-- Left: Logo & Description -->
+      <div class="text-center md:text-left">
+        <p class="font-serif font-bold text-[var(--color-ink)] mb-1">AI+X Seminar</p>
+        <p class="text-xs text-[var(--color-muted)]">
+          {lang === "zh"
+            ? "聚焦 AI 交叉领域的线上学术研讨会"
+            : "An online seminar on cross-disciplinary AI research"}
+        </p>
+      </div>
+
+      <!-- Center: Links -->
+      <div class="flex flex-wrap justify-center gap-4 text-sm">
+        <a href={lang === "zh" ? "/about" : "/en/about"} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
+          {lang === "zh" ? "关于" : "About"}
+        </a>
+        <a href={lang === "zh" ? "/talks" : "/en/talks"} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
+          {lang === "zh" ? "往期讲座" : "Past Talks"}
+        </a>
+        <a href={lang === "zh" ? "/info" : "/en/info"} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
+          {lang === "zh" ? "须知" : "Guidelines"}
+        </a>
+        <a href={lang === "zh" ? "/contact" : "/en/contact"} class="text-[var(--color-slate)] hover:text-[var(--color-accent)]">
+          {lang === "zh" ? "联系" : "Contact"}
+        </a>
+      </div>
+
+      <!-- Right: Copyright -->
+      <div class="text-center md:text-right">
+        <p class="text-xs text-[var(--color-muted)]">
+          © {year} AI+X Seminar
+        </p>
+        <p class="text-xs text-[var(--color-muted)] mt-0.5">
+          {lang === "zh" ? "保留所有权利" : "All rights reserved"}
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom: Decorative Rule -->
+    <div class="mt-8 pt-6 border-t border-[var(--color-rule)] text-center">
+      <p class="text-xs text-[var(--color-muted)] italic">
+        {lang === "zh"
+          ? "聚焦 AI 交叉领域，服务中文社区"
+          : "Focused on cross-disciplinary AI, serving the Chinese-speaking community"}
+      </p>
+    </div>
+  </Container>
 </footer>

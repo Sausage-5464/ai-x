@@ -1,0 +1,289 @@
+// 站点全部 UI 文案集中在这里。
+// 增加新词条：两种语言都填，TypeScript 会保证 key 一致。
+// 内容（讲座、组织者信息）放在 src/content/ 里，那里有自己的 schema。
+
+export const languages = {
+  zh: "中文",
+  en: "English",
+} as const;
+
+export const defaultLang = "zh" as const;
+export type Lang = keyof typeof languages;
+
+export const ui = {
+  zh: {
+    // 全站
+    "site.name": "AI+X Seminar",
+    "site.tagline": "聚焦 AI 交叉领域的线上学术研讨会",
+    "site.description":
+      "AI+X Seminar 是一个聚焦人工智能交叉领域的线上学术研讨会，关注 AI 与各学科的融合创新。",
+
+    // 导航
+    "nav.home": "首页",
+    "nav.about": "关于",
+    "nav.info": "须知",
+    "nav.talks": "往期讲座",
+    "nav.contact": "联系我们",
+    "nav.signup": "讲者报名",
+
+    // 首页 Hero
+    "hero.title": "AI+X Seminar",
+    "hero.subtitle":
+      "每周一次，聚焦 AI 与其他领域的交叉创新，涵盖 AI+Science、跨模态、学科交叉等前沿方向。",
+    "hero.time": "每周五 10:00 - 11:00（北京时间）",
+    "hero.cta.upcoming": "查看近期讲座",
+    "hero.cta.subscribe": "订阅讲座通知",
+
+    // 首页 Features
+    "features.title": "研讨会概况",
+    "features.subtitle":
+      "面向中文学术社区,搭建高质量的 AI 基础研究交流平台。",
+    "features.f1.title": "每周一讲",
+    "features.f1.desc":
+      "周五上午固定时段开讲,每场聚焦一位讲者的近期工作,深入而非浮光掠影。",
+    "features.f2.title": "中文学术社区",
+    "features.f2.desc":
+      "以中文为主要交流语言,讲者来自全球各大研究机构,服务中文学术社区。",
+    "features.f3.title": "录播回放",
+    "features.f3.desc":
+      "全部讲座 Bilibili 同步直播并存档,会后可观看回放,论文链接公开分享。",
+    "features.f4.title": "前沿话题",
+    "features.f4.desc":
+      "覆盖机器学习理论、大模型、强化学习、AI for Science 等基础研究方向。",
+    "features.f5.title": "开放参与",
+    "features.f5.desc":
+      "微信群、Bilibili 直播间公开,观众可在直播中即时提问与讨论。",
+    "features.f6.title": "讲者自荐",
+    "features.f6.desc":
+      "欢迎在读博士生及青年研究者通过报名通道申请分享自己的工作。",
+
+    // 首页 Logos
+    "logos.title": "合作单位",
+
+    // 首页 CTA
+    "cta.title": "加入我们的社区",
+    "cta.desc":
+      "关注微信公众号【AI+X Seminar】发送【加群】获取最新讲座通知与微信群入口。",
+    "cta.button": "了解参与方式",
+
+    // About 页
+    "about.title": "关于 AI+X Seminar",
+    "about.desc": "一个由青年研究者自发组织的线上学术研讨会。",
+    "about.intro.h":
+      "为中文社区的 AI 基础研究,搭建一个长期的、严肃的交流平台。",
+    "about.intro.p":
+      "AI+X Seminar 创立于 2026 年,每周邀请一位活跃在 AI 基础研究一线的研究者(教师、博士后或博士生)分享其近期工作。我们关注机器学习理论、大模型、强化学习、AI for Science 等方向的扎实工作,以中文为主要语言,面向全球中文研究社区开放。",
+    "about.logistics.title": "基础信息",
+    "about.logistics.time": "时间",
+    "about.logistics.time.value": "每周五 10:00 - 11:00(北京时间)",
+    "about.logistics.lang": "语言",
+    "about.logistics.lang.value": "中文(讲述);幻灯片中英皆可",
+    "about.logistics.platform": "平台",
+    "about.logistics.platform.value":
+      "Bilibili 直播间 + 腾讯会议(讲者+组织者)",
+    "about.logistics.archive": "归档",
+    "about.logistics.archive.value":
+      "全部讲座在 Bilibili 频道 @AI+X-Seminar 留存回放",
+    "about.organizers.title": "组织者",
+    "about.organizers.desc":
+      "我们是一群活跃在 AI 基础研究领域的青年研究者,来自国内外多所高校。",
+
+    // Info(原 Pricing)页 — 须知
+    "info.title": "参会须知",
+    "info.desc": "面向观众与讲者的须知。",
+    "info.audience.title": "观众须知",
+    "info.audience.f1": "周五 10:00 北京时间于 Bilibili 直播间开讲",
+    "info.audience.f2": "进入微信群获取每周讲座通知与论文链接",
+    "info.audience.f3": "直播中可使用弹幕提问,讲者会在 QA 环节回应",
+    "info.audience.f4": "讲座结束后 24 小时内 Bilibili 上线回放",
+    "info.audience.f5": "论文/讲义链接见公众号每期推文",
+    "info.audience.f6": "提倡尊重讲者、文明讨论",
+    "info.audience.cta": "加入微信群",
+    "info.speaker.title": "讲者须知",
+    "info.speaker.f1": "本研讨会面向 AI 基础研究方向,优先 ML 理论与方法",
+    "info.speaker.f2": "讲座时长 45 分钟 + 15 分钟 QA",
+    "info.speaker.f3": "鼓励分享尚未发表或刚刚发表的工作",
+    "info.speaker.f4": "讲述语言为中文,幻灯片中英皆可",
+    "info.speaker.f5": "需在讲前一周提交讲座标题、摘要、个人简介、论文链接",
+    "info.speaker.f6": "讲座允许 Bilibili 同步直播与录像留存",
+    "info.speaker.cta": "申请讲者",
+
+    // Talks(原 Blog)页 — 往期讲座
+    "talks.title": "往期讲座",
+    "talks.desc":
+      "按学期划分的历次讲座存档。点击任意一场进入讲座详情与录像。",
+    "talks.back": "← 返回讲座列表",
+    "talks.speaker": "讲者",
+    "talks.affiliation": "所属机构",
+    "talks.date": "时间",
+    "talks.paper": "论文",
+    "talks.video": "录像",
+    "talks.slides": "幻灯片",
+    "talks.viewMore": "查看更多",
+
+    // Contact 页
+    "contact.title": "联系我们",
+    "contact.desc": "讲者报名、合作咨询、其他事宜都欢迎与我们联系。",
+    "contact.intro.h": "与 AI+X Seminar 联系",
+    "contact.intro.p":
+      "我们欢迎:(1)有意向分享工作的讲者自荐;(2)希望成为合作伙伴的机构;(3)对研讨会的建议与反馈。请通过下方表单或邮件与我们联系。",
+    "contact.email": "邮箱",
+    "contact.wechat": "微信公众号",
+    "contact.wechat.value": "AI+X Seminar",
+    "contact.bilibili": "Bilibili",
+    "contact.bilibili.value": "@AI+X-Seminar",
+    "contact.form.name": "姓名",
+    "contact.form.email": "邮箱",
+    "contact.form.message": "留言(若为讲者自荐,请简述拟讲内容与论文链接)",
+    "contact.form.submit": "发送",
+    "contact.form.errName": "请填写姓名",
+    "contact.form.errEmail": "请填写有效邮箱",
+    "contact.form.errEmailValid": "请填写有效邮箱",
+    "contact.form.errMessage": "请填写留言内容",
+
+    // Footer
+    "footer.copyright": "AI+X Seminar 保留所有权利。",
+    "footer.builtWith": "基于 Astroship 模板搭建",
+  },
+
+  en: {
+    "site.name": "AI+X Seminar",
+    "site.tagline": "An online seminar on cross-disciplinary AI research",
+    "site.description":
+      "AI+X Seminar is an online academic seminar focused on the intersection of AI with other fields, covering AI+Science, cross-modality, and interdisciplinary innovation.",
+
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.info": "Guidelines",
+    "nav.talks": "Past Talks",
+    "nav.contact": "Contact",
+    "nav.signup": "Apply as Speaker",
+
+    "hero.title": "AI+X Seminar",
+    "hero.subtitle":
+      "Exploring the intersection of AI with other fields, covering AI+Science, cross-modality, and interdisciplinary innovation.",
+    "hero.time": "Fridays 10:00 - 11:00 (Beijing Time, UTC+8)",
+    "hero.cta.upcoming": "View Upcoming Talks",
+    "hero.cta.subscribe": "Subscribe",
+
+    "features.title": "About the Seminar",
+    "features.subtitle":
+      "Building a high-quality forum for foundational AI research in the Chinese-speaking academic community.",
+    "features.f1.title": "Weekly Talks",
+    "features.f1.desc":
+      "One speaker per Friday at a fixed time slot, each session focused on a single researcher's recent work — in depth, not in passing.",
+    "features.f2.title": "Chinese-Speaking Community",
+    "features.f2.desc":
+      "Talks are delivered in Chinese, with speakers from research institutions worldwide. Serves the global Chinese-speaking academic community.",
+    "features.f3.title": "Recordings",
+    "features.f3.desc":
+      "All sessions are live-streamed on Bilibili and archived. Recordings, paper links and slides are openly shared after each talk.",
+    "features.f4.title": "Foundational Topics",
+    "features.f4.desc":
+      "Covers ML theory, large models, reinforcement learning, AI for Science, and adjacent foundational directions.",
+    "features.f5.title": "Open Participation",
+    "features.f5.desc":
+      "WeChat group and Bilibili live room are open. Audience can ask questions in real time during the stream.",
+    "features.f6.title": "Open Speaker Sign-up",
+    "features.f6.desc":
+      "We welcome PhD students and early-career researchers to apply through our speaker sign-up channel.",
+
+    "logos.title": "Partners",
+
+    "cta.title": "Join the Community",
+    "cta.desc":
+      "Follow our WeChat channel [AI+X Seminar] and send [加群] to receive weekly talk announcements and access the WeChat group.",
+    "cta.button": "How to Participate",
+
+    "about.title": "About AI+X Seminar",
+    "about.desc":
+      "A grass-roots online academic seminar organized by early-career researchers.",
+    "about.intro.h":
+      "Building a long-running, serious forum for foundational AI research in the Chinese-speaking community.",
+    "about.intro.p":
+      "AI+X Seminar was founded in 2026. Each week we invite one active researcher in foundational AI (faculty, postdoc or PhD student) to share their recent work. We focus on substantive work in ML theory, large models, reinforcement learning, AI for Science, and related foundational directions. Talks are in Chinese, and the seminar is open to the global Chinese-speaking research community.",
+    "about.logistics.title": "Logistics",
+    "about.logistics.time": "When",
+    "about.logistics.time.value": "Fridays 10:00 - 11:00 (Beijing Time, UTC+8)",
+    "about.logistics.lang": "Language",
+    "about.logistics.lang.value":
+      "Talk delivered in Chinese; slides may be in Chinese or English",
+    "about.logistics.platform": "Platform",
+    "about.logistics.platform.value":
+      "Bilibili live stream + Tencent Meeting (speakers + organizers)",
+    "about.logistics.archive": "Archive",
+    "about.logistics.archive.value":
+      "All talks are archived on Bilibili channel @AI+X-Seminar",
+    "about.organizers.title": "Organizers",
+    "about.organizers.desc":
+      "We are a group of early-career researchers active in foundational AI, based at universities around the world.",
+
+    "info.title": "Guidelines",
+    "info.desc": "Guidelines for audience members and speakers.",
+    "info.audience.title": "For Audience",
+    "info.audience.f1":
+      "Talks start at 10:00 Beijing Time on Friday, live-streamed on Bilibili",
+    "info.audience.f2":
+      "Join the WeChat group to receive weekly notifications and paper links",
+    "info.audience.f3":
+      "Audience can ask questions via bullet comments; the speaker responds during the QA segment",
+    "info.audience.f4":
+      "Recordings are uploaded to Bilibili within 24 hours after each talk",
+    "info.audience.f5":
+      "Paper and slide links are shared in the official WeChat post for each session",
+    "info.audience.f6": "Please be respectful to the speaker and other viewers",
+    "info.audience.cta": "Join WeChat Group",
+    "info.speaker.title": "For Speakers",
+    "info.speaker.f1":
+      "The seminar focuses on foundational AI research, with priority on ML theory and methods",
+    "info.speaker.f2": "Each session is 45 min talk + 15 min Q&A",
+    "info.speaker.f3":
+      "Sharing in-progress or recently-published work is encouraged",
+    "info.speaker.f4":
+      "Talks are delivered in Chinese; slides may be in either language",
+    "info.speaker.f5":
+      "Please submit title, abstract, bio, and paper link one week before your talk",
+    "info.speaker.f6":
+      "Talks will be live-streamed on Bilibili and the recording will be archived",
+    "info.speaker.cta": "Apply as Speaker",
+
+    "talks.title": "Past Talks",
+    "talks.desc":
+      "Archive of past sessions, grouped by semester. Click any talk to view details and recording.",
+    "talks.back": "← Back to Talks",
+    "talks.speaker": "Speaker",
+    "talks.affiliation": "Affiliation",
+    "talks.date": "Date",
+    "talks.paper": "Paper",
+    "talks.video": "Recording",
+    "talks.slides": "Slides",
+    "talks.viewMore": "View more",
+
+    "contact.title": "Contact",
+    "contact.desc":
+      "Reach out for speaker applications, partnership inquiries, or any feedback.",
+    "contact.intro.h": "Get in touch with AI+X Seminar",
+    "contact.intro.p":
+      "We welcome: (1) researchers interested in giving a talk; (2) institutions interested in partnership; (3) feedback and suggestions about the seminar. Please use the form below or contact us by email.",
+    "contact.email": "Email",
+    "contact.wechat": "WeChat Channel",
+    "contact.wechat.value": "AI+X Seminar",
+    "contact.bilibili": "Bilibili",
+    "contact.bilibili.value": "@AI+X-Seminar",
+    "contact.form.name": "Name",
+    "contact.form.email": "Email",
+    "contact.form.message":
+      "Message (for speaker applications, briefly describe the talk and include paper link)",
+    "contact.form.submit": "Send",
+    "contact.form.errName": "Please provide your name",
+    "contact.form.errEmail": "Please provide your email",
+    "contact.form.errEmailValid": "Please provide a valid email",
+    "contact.form.errMessage": "Please enter your message",
+
+    "footer.copyright": "AI+X Seminar. All rights reserved.",
+    "footer.builtWith": "Built on the Astroship template",
+  },
+} as const;
+
+// 类型推断:所有 key 在 zh 字典里出现,en 必须有同样的 key
+export type UIKey = keyof (typeof ui)["zh"];

@@ -8,24 +8,24 @@ import { useTranslations, type Lang } from "@/i18n/utils";
 export interface Props {
   lang?: Lang;
 }
-const { lang = "zh" } = Astro.props as { lang?: Lang };
+const { lang = "en" } = Astro.props as { lang?: Lang };
 const t = useTranslations(lang);
 ---
 
-<Layout title={t("nav.contact")} lang={lang}>
+<Layout title={t("nav.signup")} lang={lang}>
   <Container>
     <Sectionhead>
-      <Fragment slot="title">{t("contact.title")}</Fragment>
-      <Fragment slot="desc">{t("contact.desc")}</Fragment>
+      <Fragment slot="title">Apply as Speaker</Fragment>
+      <Fragment slot="desc">Apply to speak at AI+X Seminar</Fragment>
     </Sectionhead>
 
     <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
       <div>
         <h2 class="font-serif font-semibold text-xl text-[var(--color-ink)]">
-          {t("contact.intro.h")}
+          Become a Speaker
         </h2>
         <p class="text-sm leading-relaxed text-[var(--color-slate)] mt-3">
-          {t("contact.intro.p")}
+          We welcome PhD students and early-career researchers to apply. Please fill out the form or contact us via email.
         </p>
         <div class="mt-6 space-y-3 text-sm">
           <div class="flex items-center gap-2 text-[var(--color-slate)]">
@@ -34,11 +34,7 @@ const t = useTranslations(lang);
           </div>
           <div class="flex items-center gap-2 text-[var(--color-slate)]">
             <span class="text-[var(--color-accent)]">✦</span>
-            <span>{t("contact.wechat")}: {t("contact.wechat.value")}</span>
-          </div>
-          <div class="flex items-center gap-2 text-[var(--color-slate)]">
-            <span class="text-[var(--color-accent)]">✦</span>
-            <span>{t("contact.bilibili")}: {t("contact.bilibili.value")}</span>
+            <span>Bilibili: @AI+X-Seminar</span>
           </div>
         </div>
       </div>

@@ -1,99 +1,91 @@
 ---
 import Container from "@/components/container.astro";
-import Link from "@/components/ui/link.astro";
-import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { useTranslations, switchLangPath, type Lang } from "@/i18n/utils";
 
+const { lang = "zh" } = Astro.props as { lang?: Lang };
+const t = useTranslations(lang);
+
+const prefix = lang === "en" ? "/en" : "";
 const menuitems = [
-  {
-    title: "Features",
-    path: "#",
-    children: [
-      { title: "Action", path: "/" },
-      { title: "Another action", path: "#" },
-      { title: "Dropdown Submenu", path: "#" },
-      { title: "404 Page", path: "/404" },
-    ],
-  },
-  {
-    title: "Pricing",
-    path: "/pricing",
-  },
-  {
-    title: "About",
-    path: "/about",
-  },
-  {
-    title: "Blog",
-    path: "/blog",
-  },
-  {
-    title: "Contact",
-    path: "/contact",
-  },
-  {
-    title: "Pro Version",
-    badge: true,
-    path: "https://astroship-pro.web3templates.com/",
-  },
+  { title: t("nav.home"), path: prefix + "/" },
+  { title: lang === "zh" ? "基础信息" : "Basic Info", path: prefix + "/about" },
+  { title: t("nav.talks"), path: prefix + "/talks" },
+  { title: lang === "zh" ? "观众须知" : "Audience", path: prefix + "/audience" },
+  { title: lang === "zh" ? "讲者须知" : "For Speakers", path: prefix + "/speaker" },
+  { title: lang === "zh" ? "讲者报名" : "Apply", path: prefix + "/signup" },
+  { title: t("nav.contact"), path: prefix + "/contact" },
 ];
+
+const otherLang: Lang = lang === "zh" ? "en" : "zh";
+const otherLangLabel = lang === "zh" ? "EN" : "中";
+const otherLangPath = switchLangPath(Astro.url, otherLang);
+const homePath = prefix + "/";
 ---
 
-<Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
-    <Astronav>
-      <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
-          >
-        </a>
-        <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800" />
+<header class="border-b border-[var(--color-rule)] sticky top-0 bg-[var(--color-paper)] z-50">
+  <Container>
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href={homePath} class="flex items-center gap-2 group">
+        <div class="w-8 h-8 bg-[var(--color-accent)] rounded flex items-center justify-center">
+          <span class="text-white font-serif font-bold text-sm">AI</span>
         </div>
-      </div>
-      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
-        <ul class="flex flex-col lg:flex-row lg:gap-3">
-          {
-            menuitems.map((item, index) => (
-              <>
-                {item.children && (
-                  <Dropdown
-                    title={item.title}
-                    children={item.children}
-                    lastItem={index === menuitems.length - 1}
-                  />
-                )}
+        <span class="font-serif font-bold text-[var(--color-ink)] tracking-tight">
+          {lang === "zh" ? "AI+X Seminar" : "AI+X Seminar"}
+        </span>
+      </a>
 
-                {!item.children && (
-                  <li>
-                    <a
-                      href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
-                      <span> {item.title}</span>
-                      {item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                          New
-                        </span>
-                      )}
-                    </a>
-                  </li>
-                )}
-              </>
-            ))
-          }
-        </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
-        </div>
-      </MenuItems>
-    </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-6">
+        {menuitems.map((item) => (
+          <a
+            href={item.path}
+            class="text-sm text-[var(--color-slate)] hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)] pb-0.5">
+            {item.title}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Language Toggle -->
+      <div class="flex items-center gap-3">
+        <a
+          href={otherLangPath}
+          aria-label="Switch language"
+          class="inline-flex items-center justify-center w-9 h-9 text-sm font-mono font-medium text-[var(--color-slate)] hover:text-[var(--color-accent)] border border-[var(--color-rule)] rounded hover:border-[var(--color-accent)] transition">
+          {otherLangLabel}
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          class="lg:hidden p-2 text-[var(--color-slate)]"
+          aria-label="Menu"
+          id="mobile-menu-btn">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
     </div>
-  </header>
-</Container>
+
+    <!-- Mobile Nav -->
+    <nav class="lg:hidden hidden pb-4" id="mobile-menu">
+      <div class="flex flex-col gap-2">
+        {menuitems.map((item) => (
+          <a
+            href={item.path}
+            class="text-sm text-[var(--color-slate)] hover:text-[var(--color-accent)] py-1">
+            {item.title}
+          </a>
+        ))}
+      </div>
+    </nav>
+  </Container>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>
