@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
-import { useTranslations, type Lang } from "@/i18n/utils";
+import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 
 export interface Props {
   lang?: Lang;
@@ -21,7 +21,7 @@ const prefix = lang === "en" ? "/en" : "";
 
     <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mt-16">
       {/* 观众须知 */}
-      <a href={`${prefix}/audience`} class="flex flex-col border border-[var(--color-rule)] py-7 px-7 hover:border-[var(--color-accent)] transition group">
+      <a href={withBase(`${prefix}/audience`)} class="flex flex-col border border-[var(--color-rule)] py-7 px-7 hover:border-[var(--color-accent)] transition group">
         <h3 class="text-xl font-serif font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
           {t("info.audience.title")}
         </h3>
@@ -34,7 +34,7 @@ const prefix = lang === "en" ? "/en" : "";
       </a>
 
       {/* 讲者须知 */}
-      <a href={`${prefix}/speaker`} class="flex flex-col border border-[var(--color-rule)] py-7 px-7 hover:border-[var(--color-accent)] transition group">
+      <a href={withBase(`${prefix}/speaker`)} class="flex flex-col border border-[var(--color-rule)] py-7 px-7 hover:border-[var(--color-accent)] transition group">
         <h3 class="text-xl font-serif font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
           {t("info.speaker.title")}
         </h3>

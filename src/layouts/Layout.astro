@@ -5,7 +5,7 @@ import Navbar from "@/components/navbar/navbar.astro";
 import "@fontsource-variable/inter/index.css";
 import "@fontsource-variable/bricolage-grotesque";
 import "../styles/global.css";
-import { useTranslations, type Lang } from "@/i18n/utils";
+import { useTranslations, withBase, type Lang } from "@/i18n/utils";
 
 export interface Props {
   title?: string;
@@ -32,7 +32,7 @@ const htmlLang = lang === "en" ? "en" : "zh-CN";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <meta name="generator" content={Astro.generator} />
 
     <SEO
